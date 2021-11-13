@@ -61,8 +61,8 @@ Jawaban:
 6. Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch1 selama 6 menit sedangkan pada client yang melalui Switch3 selama 12 menit. Dengan waktu maksimal yang dialokasikan untuk peminjaman alamat IP selama 120 menit<br>
 Jawaban:<br>
 Konfigurasi dhcp.conf pada DHCP server (Jipangu) untuk default- dan max-lease-time pada Switch1 dan Switch3:<br>
-![3-3-5](https://user-images.githubusercontent.com/81344394/141614882-1d5ab5e3-7855-41fd-9f57-65f3351bb42d.png)<br>
-![3-4-1](https://user-images.githubusercontent.com/81344394/141614884-9cdc8fc5-2aff-4003-a002-5f54eac6ecf5.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643953-d428e3f3-b498-48bd-9665-21232b4e5927.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643961-f4fd661e-3b0f-4a06-a67a-f89ca5eff4ae.png)<br>
 
 7. Luffy dan Zoro berencana menjadikan Skypie sebagai server untuk jual beli kapal yang dimilikinya dengan alamat IP yang tetap dengan IP [prefix IP].3.69<br>
 Jawaban:
