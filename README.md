@@ -8,24 +8,26 @@ Shidqi Dhaifullah - 05111940000108
 ### PRAKTIKUM MODUL 3
 
 1. Luffy bersama Zoro berencana membuat peta tersebut dengan kriteria EniesLobby sebagai DNS Server, Jipangu sebagai DHCP Server, Water7 sebagai Proxy Server...<br>
-Jawaban:<br>
+Jawaban:
 - Setting DNS server pada EniesLobby: Install bind9 kemudian start<br>
 ![3-1-1](https://user-images.githubusercontent.com/81344394/141612617-4b742bbf-2559-44a7-adff-69de715b103a.png)<br>
 ![3-1-2](https://user-images.githubusercontent.com/81344394/141612625-a06bc0b3-a5f5-440c-8745-81673a8e1e62.png)
 - Setting DHCP server pada Jipangu:
   - Install isc-dhcp-server<br>
 ![3-1-3](https://user-images.githubusercontent.com/81344394/141612630-f09639d4-5fd3-4c32-9087-a7cd3577394e.png)<br>
-![3-1-4](https://user-images.githubusercontent.com/81344394/141612634-c6e2fc5c-3be6-4eb1-9103-64cefccf89a5.png)
+![3-1-4](https://user-images.githubusercontent.com/81344394/141612634-c6e2fc5c-3be6-4eb1-9103-64cefccf89a5.png)<br>
   - Konfigurasi dhcp server untuk eth0:<br>
-![3-1-5](https://user-images.githubusercontent.com/81344394/141612637-140a3e2d-2cd1-4b00-af95-efed6a3ac330.png)
+![3-1-5](https://user-images.githubusercontent.com/81344394/141612637-140a3e2d-2cd1-4b00-af95-efed6a3ac330.png)<br>
 - Setting proxy server pada Water7: Install squid<br>
-![3-1-6](https://user-images.githubusercontent.com/81344394/141612642-bf61576d-4c3f-4f3c-96cd-448c27acf86f.png)
+![3-1-6](https://user-images.githubusercontent.com/81344394/141612642-bf61576d-4c3f-4f3c-96cd-448c27acf86f.png)<br>
+
 2. ...dan Foosha sebagai DHCP Relay.<br>
-Jawaban:<br>
+Jawaban:
 - Install isc-dhcp-relay pada Foosha<br>
-![3-2-1](https://user-images.githubusercontent.com/81344394/141612715-d10e7c5d-236c-46d7-8188-6d90d5db9c62.png)
+![3-2-1](https://user-images.githubusercontent.com/81344394/141612715-d10e7c5d-236c-46d7-8188-6d90d5db9c62.png)<br>
 - Konfigurasi relay untuk eth1, eth2, dan eth3 menuju IP address Jipangu ([prefix IP].2.4)<br>
-![3-2-2](https://user-images.githubusercontent.com/81344394/141612720-c685d244-68a2-4ba6-b8d6-b9c4e44714dd.png)
+![3-2-2](https://user-images.githubusercontent.com/81344394/141612720-c685d244-68a2-4ba6-b8d6-b9c4e44714dd.png)<br>
+
 3. Ada beberapa kriteria yang ingin dibuat oleh Luffy dan Zoro, yaitu semua client yang ada HARUS menggunakan konfigurasi IP dari DHCP Server, dan Client yang melalui Switch1 mendapatkan range IP dari [prefix IP].1.20 - [prefix IP].1.99 dan [prefix IP].1.150 - [prefix IP].1.169<br>
 Jawaban:
 - Untuk menggunakan DHCP, atur network configuration semua client seperti berikut:
@@ -37,16 +39,38 @@ iface eth0 inet dhcp
 ![3-3-2](https://user-images.githubusercontent.com/81344394/141612953-52bddf28-874c-4397-aa1f-da542312b622.png)<br>
 ![3-3-3](https://user-images.githubusercontent.com/81344394/141612958-ba1b83cd-9e21-46aa-a9f2-a4a720781346.png)<br>
 ![3-3-4](https://user-images.githubusercontent.com/81344394/141612960-69db531d-f4fb-49af-921b-c1dffadd5703.png)<br>
-- Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP Switch1:<br>
+- Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP pada Switch1:<br>
 ![3-3-5](https://user-images.githubusercontent.com/81344394/141613091-c394f9ce-7d84-4530-a34f-7b8ba75e39ea.png)<br>
+
 4. Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.30 - [prefix IP].3.50<br>
 Jawaban:<br>
-Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP Switch3:<br>
-![3-4-1](https://user-images.githubusercontent.com/81344394/141613154-a8ea6214-48e4-4d97-bc0a-fefdb6201fed.png)
-5. Client mendapatkan DNS dari EniesLobby dan client dapat terhubung dengan internet melalui DNS tersebut
-6. Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch1 selama 6 menit sedangkan pada client yang melalui Switch3 selama 12 menit. Dengan waktu maksimal yang dialokasikan untuk peminjaman alamat IP selama 120 menit
-7. Luffy dan Zoro berencana menjadikan Skypie sebagai server untuk jual beli kapal yang dimilikinya dengan alamat IP yang tetap dengan IP [prefix IP].3.69
+Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP pada Switch3:<br>
+![3-4-1](https://user-images.githubusercontent.com/81344394/141613154-a8ea6214-48e4-4d97-bc0a-fefdb6201fed.png)<br>
 
+5. Client mendapatkan DNS dari EniesLobby dan client dapat terhubung dengan internet melalui DNS tersebut<br>
+Jawaban:
+- Konfigurasi dhcp.conf pada DHCP server (Jipangu) untuk routers dan domain-name-servers pada Switch1 dan Switch3:<br>
+![3-3-5](https://user-images.githubusercontent.com/81344394/141613995-3aa1787f-01cf-47c8-b363-18ca075f4d94.png)<br>
+![3-4-1](https://user-images.githubusercontent.com/81344394/141613997-eab9bdff-533a-4028-92e4-cf480472f6c3.png)<br>
+- Uji coba pada client:<br>
+![3-5-1](https://user-images.githubusercontent.com/81344394/141614829-40232a50-58c2-4625-ac2a-e4ce50de8f55.png)<br>
+![3-5-2](https://user-images.githubusercontent.com/81344394/141614831-4dee7695-9445-408b-ad78-e28598bb70e4.png)<br>
+![3-5-3](https://user-images.githubusercontent.com/81344394/141614834-b8428947-96a4-4c1f-b3b9-dabe6026830c.png)<br>
+![3-5-4](https://user-images.githubusercontent.com/81344394/141614839-49e457c6-a6d7-4559-b3ec-5a153e9f5a6d.png)<br>
+
+6. Lama waktu DHCP server meminjamkan alamat IP kepada Client yang melalui Switch1 selama 6 menit sedangkan pada client yang melalui Switch3 selama 12 menit. Dengan waktu maksimal yang dialokasikan untuk peminjaman alamat IP selama 120 menit<br>
+Jawaban:<br>
+Konfigurasi dhcp.conf pada DHCP server (Jipangu) untuk default- dan max-lease-time pada Switch1 dan Switch3:<br>
+![3-3-5](https://user-images.githubusercontent.com/81344394/141614882-1d5ab5e3-7855-41fd-9f57-65f3351bb42d.png)<br>
+![3-4-1](https://user-images.githubusercontent.com/81344394/141614884-9cdc8fc5-2aff-4003-a002-5f54eac6ecf5.png)<br>
+
+7. Luffy dan Zoro berencana menjadikan Skypie sebagai server untuk jual beli kapal yang dimilikinya dengan alamat IP yang tetap dengan IP [prefix IP].3.69<br>
+Jawaban:
+- Konfigurasi dhcp.conf pada DHCP server (Jipangu) untuk IP address host Skypie:<br>
+![3-7-1](https://user-images.githubusercontent.com/81344394/141614966-66cf8e5c-2dbe-4eee-bf81-a9469fcf5c51.png)<br>
+- Restart DHCP server
+- Uji coba pada Skypie:<br>
+![3-7-2](https://user-images.githubusercontent.com/81344394/141615028-bc8ecbde-bcb7-40e9-bdbb-268fe2e84d22.png)<br>
 
 8. Loguetown digunakan sebagai client Proxy agar transaksi jual beli dapat terjamin keamanannya, juga untuk mencegah kebocoran data transaksi. Pada Loguetown, proxy harus bisa diakses dengan nama jualbelikapal.yyy.com dengan port yang digunakan adalah 5000. <br>
 Jawaban:<br>
