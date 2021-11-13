@@ -40,18 +40,18 @@ iface eth0 inet dhcp
 ![3-3-3](https://user-images.githubusercontent.com/81344394/141612958-ba1b83cd-9e21-46aa-a9f2-a4a720781346.png)<br>
 ![3-3-4](https://user-images.githubusercontent.com/81344394/141612960-69db531d-f4fb-49af-921b-c1dffadd5703.png)<br>
 - Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP pada Switch1:<br>
-![3-3-5](https://user-images.githubusercontent.com/81344394/141613091-c394f9ce-7d84-4530-a34f-7b8ba75e39ea.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643953-d428e3f3-b498-48bd-9665-21232b4e5927.png)<br>
 
 4. Client yang melalui Switch3 mendapatkan range IP dari [prefix IP].3.30 - [prefix IP].3.50<br>
 Jawaban:<br>
 Konfigurasi dhcpd.conf pada DHCP server (Jipangu) untuk range IP pada Switch3:<br>
-![3-4-1](https://user-images.githubusercontent.com/81344394/141613154-a8ea6214-48e4-4d97-bc0a-fefdb6201fed.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643961-f4fd661e-3b0f-4a06-a67a-f89ca5eff4ae.png)<br>
 
 5. Client mendapatkan DNS dari EniesLobby dan client dapat terhubung dengan internet melalui DNS tersebut<br>
 Jawaban:
 - Konfigurasi dhcp.conf pada DHCP server (Jipangu) untuk routers dan domain-name-servers pada Switch1 dan Switch3:<br>
-![3-3-5](https://user-images.githubusercontent.com/81344394/141613995-3aa1787f-01cf-47c8-b363-18ca075f4d94.png)<br>
-![3-4-1](https://user-images.githubusercontent.com/81344394/141613997-eab9bdff-533a-4028-92e4-cf480472f6c3.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643953-d428e3f3-b498-48bd-9665-21232b4e5927.png)<br>
+![image](https://user-images.githubusercontent.com/63639703/141643961-f4fd661e-3b0f-4a06-a67a-f89ca5eff4ae.png)<br>
 - Uji coba pada client:<br>
 ![3-5-1](https://user-images.githubusercontent.com/81344394/141614829-40232a50-58c2-4625-ac2a-e4ce50de8f55.png)<br>
 ![3-5-2](https://user-images.githubusercontent.com/81344394/141614831-4dee7695-9445-408b-ad78-e28598bb70e4.png)<br>
