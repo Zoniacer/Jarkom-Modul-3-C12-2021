@@ -14,6 +14,47 @@ Shidqi Dhaifullah - 05111940000108
 <br>
 <br>
 
+8. Loguetown digunakan sebagai client Proxy agar transaksi jual beli dapat terjamin keamanannya, juga untuk mencegah kebocoran data transaksi. Pada Loguetown, proxy harus bisa diakses dengan nama jualbelikapal.yyy.com dengan port yang digunakan adalah 5000. <br>
+Jawaban:<br>
+Pertama dibuka /etc/bind/named.conf.local pada node enieslobby dan dimasukkan berikut ini <br>
+![image](https://user-images.githubusercontent.com/63639703/141604537-ee9dccc3-8067-45d2-b8f2-c6314999040a.png)
+<br> kemudian dibuka file /etc/bind/kaizoku/jualbelikapal.c12.com yang di cp dari /etc/bind/db.local dan diubah pada berikut ini <br>
+![image](https://user-images.githubusercontent.com/63639703/141604630-921e6bb8-0620-4007-a097-ec9b0547c36a.png)
+<br> dilakukan service bind9 restart lalu pada node skypie dibuka /etc/squid/squid.conf dan ditambah sebagai berikut<br>
+![image](https://user-images.githubusercontent.com/63639703/141604762-323d7f8c-d3ac-485f-b63c-720227f2fad8.png)
+<br> lalu dilakukan service squid restart, kemudian mematikan node lougetown dan menghidupkan node lougetown, lalu export export http_proxy="http://10.20.2.3:5000", bisa dicek melalui env | grep -i proxy untuk berhasil atau tidak proxy<br>
+![image](https://user-images.githubusercontent.com/63639703/141604971-0c90fcbe-9c62-4b1b-9f3e-269aee0d7c20.png)
+<br> Kemudian langsung saja dicoba dengan lynx google
+![image](https://user-images.githubusercontent.com/63639703/141604996-6a4b8832-6875-4150-98f5-5a391e646237.png)
+![image](https://user-images.githubusercontent.com/63639703/141604987-bce8fc0b-7ea2-423b-a61a-06be96d9afbe.png)
+
+9. Agar transaksi jual beli lebih aman dan pengguna website ada dua orang, proxy dipasang autentikasi user proxy dengan enkripsi MD5 dengan dua username, yaitu luffybelikapalyyy dengan password luffy_yyy dan zorobelikapalyyy dengan password zoro_yyy. <br>
+Jawaban: <br>
+Dalam node water7 dilakukan sebagai berikut<br>
+![image](https://user-images.githubusercontent.com/63639703/141602384-144a17b9-af59-4096-b1bb-c07b84ee8457.png)
+<br>-m menggunakan enkripsi MD5. Kemudian buka file squid.conf dan isi sebagai berikut.<br>
+![image](https://user-images.githubusercontent.com/63639703/141602475-5ddd1e86-7d3d-4656-830f-b529c0a78ca2.png)
+<br> lalu dilakukan service squid restart dan langsung bisa dicoba di lougetown dengan lynx google.<br>
+![image](https://user-images.githubusercontent.com/63639703/141602538-65022be6-c36a-41f4-aa7c-68cc3d659764.png)
+![image](https://user-images.githubusercontent.com/63639703/141602632-134211bf-f3d2-426c-8124-2be1f21049ae.png)
+![image](https://user-images.githubusercontent.com/63639703/141605246-dc5124d9-e52e-485e-a85e-66870d29911c.png)
+
+10. Transaksi jual beli tidak dilakukan setiap hari, oleh karena itu akses internet dibatasi hanya dapat diakses setiap hari Senin-Kamis pukul 07.00-11.00 dan setiap hari Selasa-Jum’at pukul 17.00-03.00 keesokan harinya (sampai Sabtu pukul 03.00). <br>
+Jawaban:<br>
+
+Dalam node water7 /etc/squid/acl.conf dan ditambahkan berikut ini <br>
+![image](https://user-images.githubusercontent.com/63639703/141605658-af8f2779-0ca5-409e-9515-e414c9dc552d.png)
+<br>Kemudian buka /etc/squid/squid.conf dan ditambhakan berikut ini dan dihapus http_access allow all<br>
+![image](https://user-images.githubusercontent.com/63639703/141605701-c9d35119-5e29-4ce3-89f3-23e19a990f4b.png)
+![image](https://user-images.githubusercontent.com/63639703/141605739-237ee4b2-2a88-46d4-9f44-c11ce1af774b.png)
+<br> Lalu dilakukan service squid restart, kemudian ke node lougetown untuk melakukan testing seperti berikut<br>
+- Pada waktu yang tidak diperbolehkan
+![image](https://user-images.githubusercontent.com/63639703/141605832-4c940256-1892-4233-9bd0-d29fef51ba83.png)
+![image](https://user-images.githubusercontent.com/63639703/141605843-a1c91178-ac92-417f-b2fa-7447f548b79d.png)
+- Pada waktu yang diperbolehkan
+![image](https://user-images.githubusercontent.com/63639703/141605924-9c5742b8-0105-4b3d-92b4-fcc6b5cd8f16.png)
+![image](https://user-images.githubusercontent.com/63639703/141605928-c335d1f1-12d0-4621-b909-9bd752c694db.png)
+
 11. Agar transaksi bisa lebih fokus berjalan, maka dilakukan redirect website agar mudah mengingat website transaksi jual beli kapal. Setiap mengakses google.com, akan diredirect menuju super.franky.yyy.com dengan website yang sama pada soal shift modul 2. Web server super.franky.yyy.com berada pada node Skypie.<br>
 Jawaban:
 - Pada node EnniesLobby, Edit file named.conf.local menggunakan nano /etc/bind/named.conf.local seperti gambar di bawah
